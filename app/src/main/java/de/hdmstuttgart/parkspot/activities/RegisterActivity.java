@@ -1,12 +1,12 @@
-package de.hdmstuttgart.parkspot;
+package de.hdmstuttgart.parkspot.activities;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import de.hdmstuttgart.parkspot.R;
 import de.hdmstuttgart.parkspot.usermanagement.UserRegister;
 
 
@@ -59,7 +59,6 @@ public class RegisterActivity extends AppCompatActivity {
                     editTextPasswordConfirm.requestFocus();
                     return;
                 }
-
 
                 userRegister.registerNewUser(mail, password, RegisterActivity.this);
 

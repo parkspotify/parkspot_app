@@ -1,9 +1,10 @@
-package de.hdmstuttgart.parkspot
+package de.hdmstuttgart.parkspot.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import de.hdmstuttgart.parkspot.R
 
 class SplashActivity : AppCompatActivity() {
 

@@ -10,14 +10,14 @@ import retrofit2.Response;
 
 import java.io.IOException;
 
-public class UserRegister {
+public class UserLogin {
 
-    public void registerNewUser(String mail, String password, final Context context) {
+    public void LoginUser(String mail, String password, final Context context) {
 
         Call<ResponseBody> call = Client
                 .getInstance()
                 .getApi()
-                .register(mail, password);
+                .login(mail, password);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -36,7 +36,7 @@ public class UserRegister {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
+
             }
         });
     }
