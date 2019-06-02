@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class UserLogin {
 
-    public void LoginUser(String mail, String password, final Context context) {
+    public void loginUser(String mail, String password, final Context context) {
 
         Call<ResponseBody> call = Client
                 .getInstance()
@@ -36,7 +36,7 @@ public class UserLogin {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
