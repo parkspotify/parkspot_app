@@ -22,7 +22,7 @@ public class UserRegister {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.raw().networkResponse() != null) {
+                if (response.code() == 200) {
                     try {
                         String resp = response.body().string();
                         Toast.makeText(context, resp, Toast.LENGTH_LONG).show();
@@ -30,7 +30,7 @@ public class UserRegister {
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(context, "Server not reachable!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Server Error: " + response.code(), Toast.LENGTH_LONG).show();
                 }
             }
 
