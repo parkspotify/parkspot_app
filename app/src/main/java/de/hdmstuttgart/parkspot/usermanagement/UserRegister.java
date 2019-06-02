@@ -2,10 +2,8 @@ package de.hdmstuttgart.parkspot.usermanagement;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 import de.hdmstuttgart.parkspot.activities.LoginActivity;
-import de.hdmstuttgart.parkspot.activities.RegisterActivity;
 import de.hdmstuttgart.parkspot.networking.Client;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
