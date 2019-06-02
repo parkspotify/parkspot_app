@@ -14,4 +14,11 @@ public interface Api {
         @Field("mail") String mail,
         @Field("password") String password
     );
+
+    @FormUrlEncoded
+    @POST("login")
+    Call<ResponseBody> login(
+            @Field("mail") String mail,
+            @Field("password") String password
+    );
 }
