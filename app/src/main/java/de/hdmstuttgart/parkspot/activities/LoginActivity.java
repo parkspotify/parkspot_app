@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = editTextPassword.getText().toString().trim();
 
                 if(mail.isEmpty()) {
-                    editTextMail.setError("E-Mail address requiered!");
+                    editTextMail.setError("E-Mail address required!");
                     editTextMail.requestFocus();
                     return;
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
@@ -53,12 +53,12 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 if(password.isEmpty()) {
-                    editTextPassword.setError("Password requiered!");
+                    editTextPassword.setError("Password required!");
                     editTextPassword.requestFocus();
                     return;
                 }
 
-                userLogin.LoginUser(mail, password, LoginActivity.this);
+                userLogin.loginUser(mail, password, LoginActivity.this);
 
             }
         });

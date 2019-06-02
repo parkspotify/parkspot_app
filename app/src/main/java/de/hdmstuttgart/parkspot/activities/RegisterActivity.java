@@ -35,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String passwordConfirm = editTextPasswordConfirm.getText().toString().trim();
 
                 if(mail.isEmpty()) {
-                    editTextMail.setError("E-Mail address requiered!");
+                    editTextMail.setError("E-Mail address required!");
                     editTextMail.requestFocus();
                     return;
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 if(password.isEmpty()) {
-                    editTextPassword.setError("Password requiered!");
+                    editTextPassword.setError("Password required!");
                     editTextPassword.requestFocus();
                     return;
                 } else if (password.length() < 8) {
