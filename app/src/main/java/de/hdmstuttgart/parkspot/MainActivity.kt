@@ -1,5 +1,7 @@
 package de.hdmstuttgart.parkspot
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -10,6 +12,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        startintent()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -26,5 +30,9 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+    fun startintent () {
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
     }
 }
