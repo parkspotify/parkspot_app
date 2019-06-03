@@ -1,7 +1,10 @@
 package de.hdmstuttgart.parkspot.usermanagement;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
+import de.hdmstuttgart.parkspot.activities.LoginActivity;
+import de.hdmstuttgart.parkspot.activities.MainActivity;
 import de.hdmstuttgart.parkspot.networking.Client;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -26,6 +29,8 @@ public class UserLogin {
                     try {
                         String resp = response.body().string();
                         Toast.makeText(context, resp, Toast.LENGTH_LONG).show();
+
+                        context.startActivity(new Intent(context, MainActivity.class));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

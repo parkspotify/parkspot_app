@@ -12,8 +12,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        startintent()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -30,9 +28,5 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
-    }
-    fun startintent () {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
     }
 }
