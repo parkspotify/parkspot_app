@@ -5,4 +5,5 @@
     <string name="e_mail">E-Mail</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>
