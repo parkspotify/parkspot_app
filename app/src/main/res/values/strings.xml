@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Parkspot</string>
     <string name="action_settings">Settings</string>
+    <string name="e_mail_adress">E-Mail Adress</string>
+    <string name="e_mail">E-Mail</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
