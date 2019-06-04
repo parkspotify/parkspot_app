@@ -16,14 +16,30 @@
         <activity android:name=".activities.RegisterActivity">
         </activity>
         <activity
+<<<<<<< Updated upstream
                 android:name=".activities.SplashActivity"
+=======
+                android:name=".PiOverviewActivity"
+                android:label="@string/title_activity_pi_overview"
+                android:theme="@style/AppTheme.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN"/>
+
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent-filter>
+        </activity>
+        <activity
+                android:name=".SplashActivity"
+>>>>>>> Stashed changes
                 android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
+<<<<<<< Updated upstream
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+=======
+
+>>>>>>> Stashed changes
         </activity>
         <activity
                 android:name=".activities.MainActivity"
