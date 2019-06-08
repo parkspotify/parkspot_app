@@ -9,6 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 import de.hdmstuttgart.parkspot.Constants;
 import de.hdmstuttgart.parkspot.R;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
+import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +21,9 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    MapView map = null;
+    MyLocationNewOverlay mLocationOverlay = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         checkPermissions();
+        map = findViewById(R.id.map);
+        map.setTileSource(TileSourceFactory.MAPNIK);
     }
 
     /**
@@ -78,6 +87,23 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        map.onResume(); //needed for compass, my location overlays, v6.0.0 and up
+        //add current location to map
+        if (mLocationOverlay == null)
+            mLocationOverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(this), map);
+        mLocationOverlay.enableMyLocation();
+        map.getOverlays().add(mLocationOverlay);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        map.onPause();  //needed for compass, my location overlays, v6.0.0 and up
     }
 
 }
