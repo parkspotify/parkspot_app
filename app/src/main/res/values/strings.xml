@@ -6,4 +6,12 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="title_activity_main2">Main2Activity</string>
+
+    <!-- permissions -->
+    <string name="permission_storage">Auf Speicher zugreifen</string>
+    <string name="permission_gps">GPS</string>
+    <string name="permission_location">Lokalisierung</string>
+    <string name="permission_denied">App funktioniert nicht ohne Berechtigungen</string>
+    <string name="permission_granted">Vielen Dank</string>
+
 </resources>
