@@ -3,7 +3,9 @@ package de.hdmstuttgart.parkspot.usermanagement;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
+import de.hdmstuttgart.parkspot.SharedPrefs;
 import de.hdmstuttgart.parkspot.activities.MainActivity;
+import de.hdmstuttgart.parkspot.models.User;
 import de.hdmstuttgart.parkspot.networking.Client;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -14,7 +16,9 @@ import java.io.IOException;
 
 public class UserLogin {
 
-    public void loginUser(String mail, String password, final Context context) {
+    User mUser = new User();
+
+    public void loginUser(final String mail, String password, final Context context) {
 
         Call<ResponseBody> call = Client
                 .getInstance()
@@ -29,6 +33,12 @@ public class UserLogin {
                         String resp = response.body().string();
                         Toast.makeText(context, resp, Toast.LENGTH_LONG).show();
 
+                        //TODO: setCorrect userid
+                        User.setUserid(1);
+
+                        User.setMail(mail);
+                        User.setLOGGED_IN(true);
+                        
                         context.startActivity(new Intent(context, MainActivity.class));
                     } catch (IOException e) {
                         e.printStackTrace();

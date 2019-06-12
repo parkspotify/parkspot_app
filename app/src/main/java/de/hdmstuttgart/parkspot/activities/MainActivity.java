@@ -10,6 +10,7 @@ import android.widget.Toast;
 import de.hdmstuttgart.parkspot.BuildConfig;
 import de.hdmstuttgart.parkspot.Constants;
 import de.hdmstuttgart.parkspot.R;
+import de.hdmstuttgart.parkspot.SharedPrefs;
 import org.jetbrains.annotations.NotNull;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         checkPermissions();
         setMapConfigs();
+        SharedPrefs.init(getApplicationContext());
     }
 
     /**
