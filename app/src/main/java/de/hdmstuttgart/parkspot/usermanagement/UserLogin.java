@@ -23,7 +23,7 @@ public class UserLogin {
         Call<ResponseBody> call = Client
                 .getInstance()
                 .getApi()
-                .login(mail, password);
+                .userlogin(mail, password);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -38,7 +38,7 @@ public class UserLogin {
 
                         User.setMail(mail);
                         User.setLOGGED_IN(true);
-                        
+
                         context.startActivity(new Intent(context, MainActivity.class));
                     } catch (IOException e) {
                         e.printStackTrace();
