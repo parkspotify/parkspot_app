@@ -15,6 +15,7 @@ import android.widget.Toast;
 import de.hdmstuttgart.parkspot.Constants;
 import de.hdmstuttgart.parkspot.RaspberryLocationListFragment;
 import de.hdmstuttgart.parkspot.dummy.DummyContent;
+import de.hdmstuttgart.parkspot.fragments.HereMapFragment;
 import de.hdmstuttgart.parkspot.fragments.MapFragment;
 import de.hdmstuttgart.parkspot.R;
 import de.hdmstuttgart.parkspot.SharedPrefs;
@@ -25,7 +26,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements MapFragment.OnMapFragmentInteractionListener, RaspberryLocationListFragment.OnListFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements
+        MapFragment.OnMapFragmentInteractionListener,
+        RaspberryLocationListFragment.OnListFragmentInteractionListener,
+        HereMapFragment.OnFragmentInteractionListener {
 
     private ViewPager mPager;
     private static final int NUM_PAGES = 2;
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements MapFragment.OnMap
         setSupportActionBar(toolbar);
         checkPermissions();
         SharedPrefs.init(getApplicationContext());
-        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager = findViewById(R.id.pager);
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(pagerAdapter);
     }
@@ -119,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements MapFragment.OnMap
         @Override
         public Fragment getItem(int position) {
             if (position == 0)
-                return MapFragment.newInstance();
+                return HereMapFragment.newInstance();
             else if (position == 1)
                 return RaspberryLocationListFragment.newInstance();
             else return MapFragment.newInstance();

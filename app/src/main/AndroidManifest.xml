@@ -16,7 +16,10 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:hardwareAccelerated="true">
+        <meta-data android:name="com.here.android.maps.appid" android:value="k8V3lgg1TNtNFe3ZDGjU"/>
+        <meta-data android:name="com.here.android.maps.apptoken" android:value="EDj2O_ceOjgmrc0TQhjfbg"/>
         <activity
                 android:name=".activities.MainActivity"
                 android:label="@string/app_name"

@@ -8,10 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import de.hdmstuttgart.parkspot.R;
 import org.osmdroid.config.Configuration;
+import org.osmdroid.config.IConfigurationProvider;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
+
+import java.io.File;
 
 
 /**
@@ -51,6 +54,11 @@ public class MapFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Configuration.getInstance().setUserAgentValue(context.getPackageName());
+        IConfigurationProvider osmConf =  Configuration.getInstance();
+        File basePath = new File(context.getCacheDir().getAbsolutePath(), "osmdroid");
+        osmConf.setOsmdroidBasePath(basePath);
+        File tileCache = new File(context.getCacheDir().getAbsolutePath(), "tile");
+        osmConf.setOsmdroidTileCache(tileCache);
         parentView =inflater.inflate(R.layout.fragment_map, container, false);
         setMapConfigs();
         return parentView;
