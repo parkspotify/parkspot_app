@@ -1,31 +1,35 @@
 package de.hdmstuttgart.parkspot.models;
 
+import de.hdmstuttgart.parkspot.SharedPrefs;
+
 public class User {
 
     private int userid;
     private String mail;
-    private String password;
+    private Boolean LOGGED_IN;
 
-    public User (int userid, String mail, String password) {
-        this.userid = userid;
-        this.mail = mail;
-        this.password = password;
+    public static Boolean getLOGGED_IN() {
+        return SharedPrefs.read(String.valueOf(SharedPrefs.LOGGED_IN), false);
     }
 
-    public int getUserid() {
-        return userid;
+    public static void setLOGGED_IN(Boolean status) {
+        SharedPrefs.write(String.valueOf(SharedPrefs.LOGGED_IN), status);
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public static int getUserid() {
+        return SharedPrefs.read(SharedPrefs.USERID, 0);
     }
 
-    public String getMail() {
-        return mail;
+    public static void setUserid(int userid) {
+        SharedPrefs.write(SharedPrefs.USERID, userid);
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public static String getMail() {
+        return SharedPrefs.read(SharedPrefs.MAIL, null);
+    }
+
+    public static void setMail(String mail) {
+        SharedPrefs.write(SharedPrefs.MAIL, mail);
     }
 
 
