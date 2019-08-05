@@ -13,7 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 import de.hdmstuttgart.parkspot.Constants;
-import de.hdmstuttgart.parkspot.RaspberryLocationListFragment;
+import de.hdmstuttgart.parkspot.fragments.RaspberryLocationListFragment;
 import de.hdmstuttgart.parkspot.dummy.DummyContent;
 import de.hdmstuttgart.parkspot.fragments.HereMapFragment;
 import de.hdmstuttgart.parkspot.fragments.MapFragment;

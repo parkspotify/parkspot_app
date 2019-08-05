@@ -1,5 +1,7 @@
 package de.hdmstuttgart.parkspot.dummy;
 
+import com.here.android.mpa.common.GeoCoordinate;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,18 +27,14 @@ public class DummyContent {
 
     static {
         // Add some sample items.
-        addItem(new DummyItem(String.valueOf(1), "Raspberry id798 \nLatitude: 21.94563, Longitude: -164.24798"));
-        addItem(new DummyItem(String.valueOf(2), "Raspberry id547 \nLatitude: 54.89209, Longitude: 52.47664"));
-        addItem(new DummyItem(String.valueOf(3), "Raspberry id272 \nLatitude: -23.15056, Longitude: -171.56628"));
-        addItem(new DummyItem(String.valueOf(4), "Raspberry id159 \nLatitude: -28.45507, Longitude: 133.15978"));
-        addItem(new DummyItem(String.valueOf(5), "Raspberry id820 \nLatitude: 58.71674, Longitude: 129.53751"));
-        addItem(new DummyItem(String.valueOf(6), "Raspberry id435 \nLatitude: -8.24891, Longitude: -108.56783"));
-        addItem(new DummyItem(String.valueOf(7), "Raspberry id242 \nLatitude: -28.92105, Longitude: 77.98870"));
-        addItem(new DummyItem(String.valueOf(8), "Raspberry id246 \nLatitude: 12.84797, Longitude: -153.63357"));
-        addItem(new DummyItem(String.valueOf(9), "Raspberry id869 \nLatitude: 58.69578, Longitude: 57.04733"));
-        addItem(new DummyItem(String.valueOf(10), "Raspberry idi22 \nLatitude: -7.49030, Longitude: 152.50843"));
-        addItem(new DummyItem(String.valueOf(11), "Raspberry id829 \nLatitude: 50.70225, Longitude: 77.50784"));
-        addItem(new DummyItem(String.valueOf(12), "Raspberry id564 \nLatitude: -43.97845, Longitude: 49.14345"));
+        addItem(new DummyItem(String.valueOf(1), "Raspberry id798 \n", new GeoCoordinate(48.943394, 9.432170)));
+        addItem(new DummyItem(String.valueOf(2), "Raspberry id547 \n", new GeoCoordinate(48.782897, 9.181490)));
+        addItem(new DummyItem(String.valueOf(3), "Raspberry id272 \n", new GeoCoordinate(48.787061, 9.181640)));
+        addItem(new DummyItem(String.valueOf(4), "Raspberry id159 \n", new GeoCoordinate(48.786838, 9.175194)));
+        addItem(new DummyItem(String.valueOf(5), "Raspberry id820 \n", new GeoCoordinate(48.748388, 9.110238)));
+        addItem(new DummyItem(String.valueOf(6), "Raspberry id435 \n", new GeoCoordinate(48.747141, 9.102149)));
+        addItem(new DummyItem(String.valueOf(7), "Raspberry id242 \n", new GeoCoordinate(48.746032, 9.116121)));
+        addItem(new DummyItem(String.valueOf(8), "Raspberry id246 \n", new GeoCoordinate(48.745496, 9.109608)));
     }
 
     private static void addItem(DummyItem item) {
@@ -50,10 +48,12 @@ public class DummyContent {
     public static class DummyItem {
         public final String id;
         public final String content;
+        public final GeoCoordinate coordinate;
 
-        public DummyItem(String id, String content) {
+        public DummyItem(String id, String content, GeoCoordinate coordinate) {
             this.id = id;
             this.content = content;
+            this.coordinate = coordinate;
         }
 
         @Override

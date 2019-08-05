@@ -6,7 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.here.android.mpa.common.*;
+import com.here.android.mpa.common.GeoCoordinate;
+import com.here.android.mpa.common.GeoPosition;
+import com.here.android.mpa.common.OnEngineInitListener;
+import com.here.android.mpa.common.PositioningManager;
 import com.here.android.mpa.mapping.Map;
 import com.here.android.mpa.mapping.MapMarker;
 import com.here.android.mpa.mapping.SupportMapFragment;
@@ -120,18 +123,14 @@ public class HereMapFragment extends Fragment {
     }
 
     private void addMarkers() {
-        map.addMapObject(new MapMarker(new GeoCoordinate(21.94563, -164.24798)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(54.89209, 52.47664)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(-23.15056, -171.56628)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(-28.45507, 133.15978)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(58.71674, 129.53751)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(-8.24891, -108.56783)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(-28.92105, 77.98870)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(12.84797, -153.63357)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(58.69578, 57.04733)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(-7.49030, 152.50843)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(50.70225, 77.50784)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(-43.97845, 49.14345)));
+        map.addMapObject(new MapMarker(new GeoCoordinate(48.943394, 9.432170)));
+        map.addMapObject(new MapMarker(new GeoCoordinate(48.782897, 9.181490)));
+        map.addMapObject(new MapMarker(new GeoCoordinate(48.787061, 9.181640)));
+        map.addMapObject(new MapMarker(new GeoCoordinate(48.786838, 9.175194)));
+        map.addMapObject(new MapMarker(new GeoCoordinate(48.748388, 9.110238)));
+        map.addMapObject(new MapMarker(new GeoCoordinate(48.747141, 9.102149)));
+        map.addMapObject(new MapMarker(new GeoCoordinate(48.746032, 9.116121)));
+        map.addMapObject(new MapMarker(new GeoCoordinate(48.745496, 9.109608)));
     }
 
     // Define positioning listener

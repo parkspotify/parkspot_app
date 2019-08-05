@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import de.hdmstuttgart.parkspot.RaspberryLocationListFragment.OnListFragmentInteractionListener;
+import de.hdmstuttgart.parkspot.fragments.RaspberryLocationListFragment.OnListFragmentInteractionListener;
 import de.hdmstuttgart.parkspot.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -14,7 +14,6 @@ import java.util.List;
 /**
  * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
  */
 public class MyRaspberryLocationRecyclerViewAdapter extends RecyclerView.Adapter<MyRaspberryLocationRecyclerViewAdapter.ViewHolder> {
 
@@ -37,7 +36,7 @@ public class MyRaspberryLocationRecyclerViewAdapter extends RecyclerView.Adapter
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mContentView.setText(mValues.get(position).content + mValues.get(position).coordinate.toString());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
