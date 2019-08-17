@@ -2,6 +2,7 @@ package de.hdmstuttgart.parkspot.usermanagement;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 import de.hdmstuttgart.parkspot.activities.LoginActivity;
 import de.hdmstuttgart.parkspot.networking.Client;
@@ -23,7 +24,7 @@ public class UserRegister {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.code() == 200) {
+                if (response.code() == 201) {
                     try {
                         String resp = response.body().string();
                         Toast.makeText(context, resp, Toast.LENGTH_LONG).show();
@@ -34,7 +35,8 @@ public class UserRegister {
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(context, "Server Error: " + response.code(), Toast.LENGTH_LONG).show();
+                    Log.d("PSPOT_REGISTER_ERROR", response.message());
+                    Toast.makeText(context, "Server Error: " + response.code() + " -> " + response.message(), Toast.LENGTH_LONG).show();
                 }
             }
 

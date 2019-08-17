@@ -9,14 +9,14 @@ import retrofit2.http.POST;
 public interface Api {
 
     @FormUrlEncoded
-    @POST("register")
+    @POST("auth/register/")
     Call<ResponseBody> register(
         @Field("mail") String mail,
         @Field("password") String password
     );
 
     @FormUrlEncoded
-    @POST("login")
+    @POST("auth/signin/")
     Call<ResponseBody> login(
             @Field("mail") String mail,
             @Field("password") String password

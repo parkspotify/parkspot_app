@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Client {
 
-    private static final String BASE_URL = "http://cryptec.tech/parkspot/";
+    private static final String BASE_URL = "http://192.168.1.101:8000/";
 
     private static Client mRetrofitInstance;
     private Retrofit retrofit;
