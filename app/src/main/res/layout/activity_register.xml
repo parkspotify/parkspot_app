@@ -12,7 +12,7 @@
             android:layout_above="@id/linearLayout"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
-            android:text="Sign Up"
+            android:text="Sign up"
             android:drawableLeft="@drawable/logo_small"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorHeadlineSignUp" />
@@ -65,7 +65,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="100dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Sign Up"
+            android:text="Sign up"
             android:textAllCaps="false"
             android:textColor="@color/colorRegisterLoginInputText" />
 

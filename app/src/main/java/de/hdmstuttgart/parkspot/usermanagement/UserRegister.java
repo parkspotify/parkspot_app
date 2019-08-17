@@ -19,7 +19,7 @@ public class UserRegister {
         Call<ResponseBody> call = Client
                 .getInstance()
                 .getApi()
-                .register(mail, password);
+                .userregister(mail, password);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
