@@ -11,16 +11,17 @@ public interface Api {
 
     //POST method to register a new user account
     @FormUrlEncoded
-    @POST("user/register")
-    Call<ResponseBody> userregister(
+    @POST("auth/register/")
+    Call<ResponseBody> register(
+
         @Field("mail") String mail,
         @Field("password") String password
     );
 
     //POST method to check login credentials
     @FormUrlEncoded
-    @POST("user/login")
-    Call<ResponseBody> userlogin(
+    @POST("auth/signin/")
+    Call<ResponseBody> login(
             @Field("mail") String mail,
             @Field("password") String password
     );

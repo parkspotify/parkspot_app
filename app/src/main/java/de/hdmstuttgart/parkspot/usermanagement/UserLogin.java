@@ -1,6 +1,7 @@
 package de.hdmstuttgart.parkspot.usermanagement;
 
 import android.content.Context;
+import android.util.Log;
 import android.content.Intent;
 import android.widget.Toast;
 import de.hdmstuttgart.parkspot.SharedPrefs;
@@ -23,7 +24,7 @@ public class UserLogin {
         Call<ResponseBody> call = Client
                 .getInstance()
                 .getApi()
-                .userlogin(mail, password);
+                .login(mail, password);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -44,7 +45,8 @@ public class UserLogin {
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(context, "Server Error: " + response.code(), Toast.LENGTH_LONG).show();
+                    Log.d("PSPOT_LOGIN_ERROR", response.message());
+                    Toast.makeText(context, "Server Error: " + response.code() + " -> " + response.message(), Toast.LENGTH_LONG).show();
                 }
             }
 
