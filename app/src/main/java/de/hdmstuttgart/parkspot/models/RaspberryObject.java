@@ -6,6 +6,7 @@ public class RaspberryObject {
     private int userId;
     private double longitude;
     private double latitude;
+    private int freeSpots;
 
     public int getId() {
         return id;
@@ -37,5 +38,13 @@ public class RaspberryObject {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public int getFreeSpots() {
+        return freeSpots;
+    }
+
+    public void setFreeSpots(int freeSpots) {
+        this.freeSpots = freeSpots;
     }
 }
