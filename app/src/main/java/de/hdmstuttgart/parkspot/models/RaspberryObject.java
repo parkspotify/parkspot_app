@@ -1,6 +1,6 @@
 package de.hdmstuttgart.parkspot.models;
 
-public class RaspberryLocation {
+public class RaspberryObject {
 
     private int id;
     private int userId;
