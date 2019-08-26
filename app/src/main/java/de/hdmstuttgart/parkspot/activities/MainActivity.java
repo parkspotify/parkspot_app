@@ -4,29 +4,53 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
-import de.hdmstuttgart.parkspot.BuildConfig;
 import de.hdmstuttgart.parkspot.Constants;
+import de.hdmstuttgart.parkspot.fragments.RaspberryLocationListFragment;
+import de.hdmstuttgart.parkspot.dummy.DummyContent;
+import de.hdmstuttgart.parkspot.fragments.HereMapFragment;
+import de.hdmstuttgart.parkspot.fragments.MapFragment;
 import de.hdmstuttgart.parkspot.R;
 import de.hdmstuttgart.parkspot.SharedPrefs;
 import org.jetbrains.annotations.NotNull;
-import org.osmdroid.config.Configuration;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
-import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * This file is part of Parkspot.      
+ *
+ * Parkspot is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation version 3 of the License.
+ * Parkspot is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with Parkspot. 
+ * If not, see http://www.gnu.org/licenses/.
+ *
+ * Copyright (c) 2019, Hochschule der Medien
+ * Author: Monika Grabke
+ */
 
-    MapView map = null;
-    MyLocationNewOverlay mLocationOverlay = null;
+public class MainActivity extends AppCompatActivity implements
+        MapFragment.OnMapFragmentInteractionListener,
+        RaspberryLocationListFragment.OnListFragmentInteractionListener,
+        HereMapFragment.OnFragmentInteractionListener {
+
+    private ViewPager mPager;
+    private static final int NUM_PAGES = 2;
+    private PagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +59,22 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         checkPermissions();
-        setMapConfigs();
         SharedPrefs.init(getApplicationContext());
+        mPager = findViewById(R.id.pager);
+        pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        mPager.setAdapter(pagerAdapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mPager.getCurrentItem() == 0) {
+            // If the user is currently looking at the first step, allow the system to handle the
+            // Back button. This calls finish() on this activity and pops the back stack.
+            super.onBackPressed();
+        } else {
+            // Otherwise, select the previous step.
+            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+        }
     }
 
     /**
@@ -48,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         addPermission(permissionsList, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         addPermission(permissionsList, Manifest.permission.ACCESS_COARSE_LOCATION);
         addPermission(permissionsList, Manifest.permission.ACCESS_FINE_LOCATION);
+        addPermission(permissionsList, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        addPermission(permissionsList, Manifest.permission.READ_EXTERNAL_STORAGE);
 
         if (permissionsList.size() > 0) {
             ActivityCompat.requestPermissions(this, permissionsList.toArray(new String[permissionsList.size()]),
@@ -59,17 +99,6 @@ public class MainActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
             permissionsList.add(permission);
         }
-    }
-
-    private void setMapConfigs() {
-        map = findViewById(R.id.map);
-        Configuration.getInstance().setUserAgentValue(BuildConfig.APPLICATION_ID);
-        map.setTileSource(TileSourceFactory.MAPNIK);
-        map.setMultiTouchControls(true);
-        map.getController().setZoom(20.0);
-        map.setMinZoomLevel(2.0);
-        map.setHorizontalMapRepetitionEnabled(false);
-        map.setVerticalMapRepetitionEnabled(false);
     }
 
     @Override
@@ -85,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     && perms.get(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
                     && perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 // All Permissions Granted
-                Toast.makeText(MainActivity.this, "Permissions Granted", Toast.LENGTH_SHORT)
+                Toast.makeText(MainActivity.this, getResources().getText(R.string.permission_granted), Toast.LENGTH_SHORT)
                         .show();
             } else {
                 // Permission Denied
@@ -99,21 +128,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onResume(){
-        super.onResume();
-        map.onResume(); //needed for compass, location overlays
-        //add current location to map
-        if (mLocationOverlay == null)
-            mLocationOverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(this), map);
-        mLocationOverlay.enableMyLocation();
-        mLocationOverlay.enableFollowLocation();
-        map.getOverlays().add(mLocationOverlay);
+    public void onListFragmentInteraction(DummyContent.DummyItem mItem) {
+
     }
 
-    @Override
-    public void onPause(){
-        super.onPause();
-        map.onPause();  //needed for compass, location overlays
+    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+        ScreenSlidePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            if (position == 0)
+                return HereMapFragment.newInstance();
+            else if (position == 1)
+                return RaspberryLocationListFragment.newInstance();
+            else return MapFragment.newInstance();
+        }
+
+        @Override
+        public int getCount() {
+            return NUM_PAGES;
+        }
     }
 
 }

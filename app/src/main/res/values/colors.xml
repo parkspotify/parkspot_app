@@ -7,4 +7,6 @@
     <color name="colorRegisterLoginInputBackground">#FFFFFF</color>
     <color name="colorHeadlineSignUp">#000000</color>
 
+    <color name="parkspot_red">#B93030</color>
+
 </resources>
