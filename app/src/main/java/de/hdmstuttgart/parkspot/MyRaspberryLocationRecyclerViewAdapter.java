@@ -50,6 +50,7 @@ public class MyRaspberryLocationRecyclerViewAdapter extends RecyclerView.Adapter
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).content + mValues.get(position).coordinate.toString());
+        holder.mOwnerView.setVisibility(View.VISIBLE);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,16 +70,18 @@ public class MyRaspberryLocationRecyclerViewAdapter extends RecyclerView.Adapter
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+        final View mView;
+        final TextView mIdView;
+        final TextView mContentView;
+        final TextView mOwnerView;
+        DummyItem mItem;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = view.findViewById(R.id.item_number);
+            mContentView = view.findViewById(R.id.content);
+            mOwnerView = view.findViewById(R.id.list_owner);
         }
 
         @Override
