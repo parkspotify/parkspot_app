@@ -8,6 +8,7 @@ import de.hdmstuttgart.parkspot.SharedPrefs;
 import de.hdmstuttgart.parkspot.activities.MainActivity;
 import de.hdmstuttgart.parkspot.models.User;
 import de.hdmstuttgart.parkspot.networking.Client;
+import de.hdmstuttgart.parkspot.networking.ResponseParser;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,33 +35,25 @@ import java.io.IOException;
 
 public class UserLogin {
 
-    User mUser = new User();
-
     public void loginUser(final String mail, String password, final Context context) {
 
-        Call<ResponseBody> call = Client
+        Call<ResponseParser> call = Client
                 .getInstance()
                 .getApi()
                 .login(mail, password);
 
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<ResponseParser>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.code() == 200) {
-                    try {
-                        String resp = response.body().string();
-                        Toast.makeText(context, resp, Toast.LENGTH_LONG).show();
+            public void onResponse(Call<ResponseParser> call, Response<ResponseParser> response) {
+                if (response.isSuccessful()) {
 
-                        //TODO: setCorrect userid
-                        User.setUserid(1);
-
+                        String accesstoken = response.body().getToken();
+                        User.setAccesstoken(accesstoken);
                         User.setMail(mail);
                         User.setLOGGED_IN(true);
 
                         context.startActivity(new Intent(context, MainActivity.class));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
                 } else {
                     Log.d("PSPOT_LOGIN_ERROR", response.message());
                     Toast.makeText(context, "Server Error: " + response.code() + " -> " + response.message(), Toast.LENGTH_LONG).show();
@@ -68,7 +61,7 @@ public class UserLogin {
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<ResponseParser> call, Throwable t) {
                 Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });

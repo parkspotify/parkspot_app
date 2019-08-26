@@ -42,7 +42,7 @@ public class UserRegister {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.code() == 201) {
+                if (response.isSuccessful()) {
                     try {
                         String resp = response.body().string();
                         Toast.makeText(context, resp, Toast.LENGTH_LONG).show();

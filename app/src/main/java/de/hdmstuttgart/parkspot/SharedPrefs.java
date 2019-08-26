@@ -26,6 +26,7 @@ public class SharedPrefs {
     private static SharedPreferences parkspotSharedPrefs;
     public static final String USERID = "USERID";
     public static final String MAIL = "MAIL";
+    public static final String ACCESSTOKEN = "ACCESSTOKEN";
     public static final Boolean LOGGED_IN = false;
 
     public static void init(Context context) {
@@ -56,7 +57,7 @@ public class SharedPrefs {
         prefsEditor.commit();
     }
 
-    //Boolean read and write
+    //Int read and write
     public static Integer read(String key, int defValue) {
         return parkspotSharedPrefs.getInt(key, defValue);
     }
