@@ -21,6 +21,8 @@ import de.hdmstuttgart.parkspot.SharedPrefs;
 
 public class User {
 
+
+
     public static Boolean getLOGGED_IN() {
         return SharedPrefs.read(String.valueOf(SharedPrefs.LOGGED_IN), false);
     }
@@ -38,7 +40,7 @@ public class User {
     }
 
     public static String getMail() {
-        return SharedPrefs.read(SharedPrefs.MAIL, null);
+        return SharedPrefs.read(SharedPrefs.MAIL, "mail not set");
     }
 
     public static void setMail(String mail) {

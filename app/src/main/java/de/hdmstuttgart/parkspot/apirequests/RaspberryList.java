@@ -1,16 +1,16 @@
-package de.hdmstuttgart.parkspot.usermanagement;
+package de.hdmstuttgart.parkspot.apirequests;
 
-import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
-import de.hdmstuttgart.parkspot.activities.LoginActivity;
+import de.hdmstuttgart.parkspot.Constants;
+import de.hdmstuttgart.parkspot.models.User;
 import de.hdmstuttgart.parkspot.networking.Client;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import java.io.IOException;
+
+
+
 
 /**
  * This file is part of Parkspot.      
@@ -29,38 +29,29 @@ import java.io.IOException;
  * Author: Nils Mursinsky
  */
 
+public class RaspberryList {
 
-public class UserRegister {
-
-    public void registerNewUser(String mail, String password, final Context context) {
+    public void getRaspberryList () {
 
         Call<ResponseBody> call = Client
                 .getInstance()
                 .getApi()
-                .register(mail, password);
+                .sensorlist(User.getAccesstoken());
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    try {
-                        String resp = response.body().string();
-                        Toast.makeText(context, resp, Toast.LENGTH_LONG).show();
 
-                        context.startActivity(new Intent(context, LoginActivity.class));
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                 } else {
-                    Log.d("PSPOT_REGISTER_ERROR", response.message());
-                    Toast.makeText(context, "Server Error: " + response.code() + " -> " + response.message(), Toast.LENGTH_LONG).show();
+                    Log.d(Constants.BASE_ERROR_TITLE + "GETPILIST", response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
+                Log.d(Constants.BASE_ERROR_TITLE + "GETPILIST", t.getMessage());
             }
         });
     }

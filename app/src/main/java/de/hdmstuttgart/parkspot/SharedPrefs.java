@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.Context;
 
+import de.hdmstuttgart.parkspot.models.User;
+
 /**
  * This file is part of Parkspot.      
  *
@@ -22,6 +24,7 @@ import android.content.Context;
  */
 
 public class SharedPrefs {
+
 
     private static SharedPreferences parkspotSharedPrefs;
     public static final String USERID = "USERID";

@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import de.hdmstuttgart.parkspot.R;
-import de.hdmstuttgart.parkspot.usermanagement.UserLogin;
+import de.hdmstuttgart.parkspot.apirequests.UserLogin;
 
 /**
  * This file is part of Parkspot.      

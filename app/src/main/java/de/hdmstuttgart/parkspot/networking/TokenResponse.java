@@ -1,4 +1,7 @@
-package de.hdmstuttgart.parkspot;
+package de.hdmstuttgart.parkspot.networking;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * This file is part of Parkspot.      
@@ -14,17 +17,21 @@ package de.hdmstuttgart.parkspot;
  * If not, see http://www.gnu.org/licenses/.
  *
  * Copyright (c) 2019, Hochschule der Medien
- * Author: Monika Grabke
+ * Author: Nils Mursinsky
  */
 
-public final class Constants {
+public class TokenResponse {
 
-    //requesting permissions
-    public static final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 2348;
+    @SerializedName("token")
+    @Expose
+    private String token;
 
-    //base URL
-    public static final String BASE_URL = "http://94.16.113.174:8000/";
+    public String getToken() {
+        return token;
+    }
 
-    //base error log title
-    public static final String BASE_ERROR_TITLE = "PSPOT_ERROR_";
+    public void setToken(String token) {
+        this.token = token;
+    }
+
 }
