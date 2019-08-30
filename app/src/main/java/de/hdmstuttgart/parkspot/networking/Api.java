@@ -48,13 +48,13 @@ public interface Api {
 
     //POST method to get a list of all sensors of one user
     @POST("sensor/list/")
-    Call<ResponseBody> sensorlist(
+    Call<RaspberryListResponse> sensorlist(
             @Header("AUTHORIZATION") String accesstoken
     );
 
     //GET method for parkspot status list
     @POST("parkspots/")
-    Call<ResponseBody> parkspots(
+    Call<ParkspotsResponse> parkspots(
             @Header("AUTHORIZATION") String accesstoken
     );
 

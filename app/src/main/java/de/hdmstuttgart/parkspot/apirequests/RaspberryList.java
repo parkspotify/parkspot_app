@@ -4,6 +4,7 @@ import android.util.Log;
 import de.hdmstuttgart.parkspot.Constants;
 import de.hdmstuttgart.parkspot.models.User;
 import de.hdmstuttgart.parkspot.networking.Client;
+import de.hdmstuttgart.parkspot.networking.RaspberryListResponse;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,14 +34,14 @@ public class RaspberryList {
 
     public void getRaspberryList () {
 
-        Call<ResponseBody> call = Client
+        Call<RaspberryListResponse> call = Client
                 .getInstance()
                 .getApi()
                 .sensorlist(User.getAccesstoken());
 
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<RaspberryListResponse>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<RaspberryListResponse> call, Response<RaspberryListResponse> response) {
                 if (response.isSuccessful()) {
 
 
@@ -50,7 +51,7 @@ public class RaspberryList {
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<RaspberryListResponse> call, Throwable t) {
                 Log.d(Constants.BASE_ERROR_TITLE + "GETPILIST", t.getMessage());
             }
         });
