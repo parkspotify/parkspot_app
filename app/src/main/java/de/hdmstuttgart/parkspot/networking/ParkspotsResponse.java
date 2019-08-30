@@ -1,5 +1,8 @@
 package de.hdmstuttgart.parkspot.networking;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * This file is part of Parkspot.      
  *
@@ -18,4 +21,50 @@ package de.hdmstuttgart.parkspot.networking;
  */
 
 public class ParkspotsResponse {
+
+
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("latitude")
+    @Expose
+    private String latitude;
+    @SerializedName("longitude")
+    @Expose
+    private String longitude;
+    @SerializedName("freespots")
+    @Expose
+    private String freespots;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getFreespots() {
+        return freespots;
+    }
+
+    public void setFreespots(String freespots) {
+        this.freespots = freespots;
+    }
 }

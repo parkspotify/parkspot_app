@@ -4,6 +4,7 @@ import android.util.Log;
 import de.hdmstuttgart.parkspot.Constants;
 import de.hdmstuttgart.parkspot.models.User;
 import de.hdmstuttgart.parkspot.networking.Client;
+import de.hdmstuttgart.parkspot.networking.ParkspotsResponse;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,14 +33,14 @@ public class Parkspots {
 
     public void getParkspots () {
 
-        Call<ResponseBody> call = Client
+        Call<ParkspotsResponse> call = Client
                 .getInstance()
                 .getApi()
                 .parkspots(User.getAccesstoken());
 
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<ParkspotsResponse>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<ParkspotsResponse> call, Response<ParkspotsResponse> response) {
                 if (response.isSuccessful()) {
 
 
@@ -50,7 +51,7 @@ public class Parkspots {
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<ParkspotsResponse> call, Throwable t) {
                 Log.d(Constants.BASE_ERROR_TITLE + "LOADPSPOTS", t.getMessage());
             }
         });
