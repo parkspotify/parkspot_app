@@ -35,16 +35,19 @@
                 android:drawableLeft="@drawable/ic_mail"
                 android:drawablePadding="5dp"
                 android:hint="@string/e_mail"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:text="test@test.de" />
 
         <EditText
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autofillHints=""
                 android:drawableLeft="@drawable/ic_lock"
                 android:drawablePadding="5dp"
                 android:hint="@string/password"
-                android:inputType="textPassword" android:autofillHints=""/>
+                android:inputType="textPassword"
+                android:text="testtest" />
 
         <EditText
                 android:id="@+id/editTextPasswordConfirm"
@@ -53,7 +56,8 @@
                 android:drawableLeft="@drawable/ic_lock"
                 android:drawablePadding="5dp"
                 android:hint="@string/confirm_password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:text="testtest" />
 
     </LinearLayout>
 

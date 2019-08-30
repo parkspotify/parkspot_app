@@ -1,33 +1,64 @@
 package de.hdmstuttgart.parkspot.networking;
 
+import com.google.gson.JsonObject;
+
+import java.util.Map;
+
+import de.hdmstuttgart.parkspot.models.User;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.DELETE;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
+import retrofit2.http.*;
+
+
+/**
+ * This file is part of Parkspot.      
+ *
+ * Parkspot is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation version 3 of the License.
+ * Parkspot is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with Parkspot. 
+ * If not, see http://www.gnu.org/licenses/.
+ *
+ * Copyright (c) 2019, Hochschule der Medien
+ * Author: Nils Mursinsky
+ */
 
 public interface Api {
 
-    //POST method to register a new user account
-    @FormUrlEncoded
-    @POST("auth/register/")
-    Call<ResponseBody> register(
 
-        @Field("mail") String mail,
-        @Field("password") String password
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json"
+    })
+
+    //POST method to register a new user account
+    @POST("auth/register/")
+    Call<TokenResponse> register(@Body RequestBody params
     );
 
     //POST method to check login credentials
-    @FormUrlEncoded
     @POST("auth/signin/")
-    Call<ResponseBody> login(
-            @Field("mail") String mail,
-            @Field("password") String password
+    Call<TokenResponse> login(@Body RequestBody params
+    );
+
+    //POST method to get a list of all sensors of one user
+    @POST("sensor/list/")
+    Call<ResponseBody> sensorlist(
+            @Header("AUTHORIZATION") String accesstoken
+    );
+
+    //GET method for parkspot status list
+    @POST("parkspots/")
+    Call<ResponseBody> parkspots(
+            @Header("AUTHORIZATION") String accesstoken
     );
 
     //POST method to send user location update
-    @FormUrlEncoded
     @POST("user/locationupdate")
     Call<ResponseBody> userlocationupdate(
             @Field("userid") String userid,
@@ -36,7 +67,6 @@ public interface Api {
     );
 
     //POST method to register a new sensor (raspi)
-    @FormUrlEncoded
     @POST("sensor/register")
     Call<ResponseBody> sensorregister(
             @Field("userid") String userid,
@@ -45,18 +75,11 @@ public interface Api {
             @Field("latitude") Float latitude
     );
 
-    //POST method to get a list of all sensors of one user
-    @FormUrlEncoded
-    @POST("sensor/list")
-    Call<ResponseBody> sensorlist(
-            @Field("userid") String userid
-    );
-
     //DELETE method to unregister an sensor
-    @FormUrlEncoded
     @DELETE("sensor/delete")
     Call<ResponseBody> sensordelete(
             @Field("sensorid") String sensorid,
             @Field("userid") String userid
     );
+
 }

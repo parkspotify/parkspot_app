@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import de.hdmstuttgart.parkspot.R
+import de.hdmstuttgart.parkspot.SharedPrefs
+import de.hdmstuttgart.parkspot.models.User
 
 /**
  * This file is part of Parkspot.      
@@ -28,11 +30,20 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        SharedPrefs.init(this)
+
         Handler().postDelayed(
             {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+                if (User.getLOGGED_IN() == true) {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    val intent = Intent(this, RegisterActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             },2000
         )
     }
