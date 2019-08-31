@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#78D5A5</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorRegisterLoginInputText">#FFFFFF</color>
@@ -8,5 +8,6 @@
     <color name="colorHeadlineSignUp">#000000</color>
 
     <color name="parkspot_red">#B93030</color>
+    <color name="parkspot_turkis">#82E7B3</color>
 
 </resources>

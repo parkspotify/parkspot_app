@@ -6,15 +6,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.here.android.mpa.common.GeoCoordinate;
-import com.here.android.mpa.common.GeoPosition;
-import com.here.android.mpa.common.OnEngineInitListener;
-import com.here.android.mpa.common.PositioningManager;
+import com.here.android.mpa.common.*;
 import com.here.android.mpa.mapping.Map;
 import com.here.android.mpa.mapping.MapMarker;
 import com.here.android.mpa.mapping.SupportMapFragment;
 import de.hdmstuttgart.parkspot.R;
 
+import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 /**
@@ -131,14 +129,28 @@ public class HereMapFragment extends Fragment {
     }
 
     private void addMarkers() {
-        map.addMapObject(new MapMarker(new GeoCoordinate(48.943394, 9.432170)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(48.782897, 9.181490)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(48.787061, 9.181640)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(48.786838, 9.175194)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(48.748388, 9.110238)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(48.747141, 9.102149)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(48.746032, 9.116121)));
-        map.addMapObject(new MapMarker(new GeoCoordinate(48.745496, 9.109608)));
+        Image mapMarker = new Image();
+        try {
+            mapMarker.setImageResource(R.drawable.logo_small_35px);
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.943394, 9.432170), mapMarker));
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.782897, 9.181490), mapMarker));
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.787061, 9.181640), mapMarker));
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.786838, 9.175194), mapMarker));
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.748388, 9.110238), mapMarker));
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.747141, 9.102149), mapMarker));
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.746032, 9.116121), mapMarker));
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.745496, 9.109608), mapMarker));
+        } catch (IOException e) {
+            e.printStackTrace();
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.943394, 9.432170)));
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.782897, 9.181490)));
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.787061, 9.181640)));
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.786838, 9.175194)));
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.748388, 9.110238)));
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.747141, 9.102149)));
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.746032, 9.116121)));
+            map.addMapObject(new MapMarker(new GeoCoordinate(48.745496, 9.109608)));
+        }
     }
 
     // Define positioning listener
